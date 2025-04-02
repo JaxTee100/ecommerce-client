@@ -2,12 +2,17 @@ import { Suspense } from "react";
 import ProductDetailsSkeleton from "./productSkeleton";
 import ProductDetailsContent from "./productDetails";
 
-function ProductDetailsPage({ params }: { params: { id: string } }) {
+
+type Params = Promise<{ id: string}>;
+
+async function  ProductDetailsPage({ params }: { params: Params }) {
+  const { id } = await params;
   return (
     <Suspense fallback={<ProductDetailsSkeleton />}>
-      <ProductDetailsContent id={params.id} />
+      <ProductDetailsContent id={id} />
     </Suspense>
   );
 }
 
 export default ProductDetailsPage;
+
