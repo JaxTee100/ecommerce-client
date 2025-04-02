@@ -5,12 +5,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useProductStore } from "@/store/useProductStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
-import { useCartStore } from "@/store/useCartStore";
 import ProductDetailsSkeleton from "./productSkeleton";
+import { useCartStore } from "@/store/useCartStore";
+ import { toast } from "sonner";
 
 function ProductDetailsContent({ id }: { id: string }) {
-
   const [product, setProduct] = useState<any>(null);
   const { getProductById, isLoading } = useProductStore();
   const { addToCart } = useCartStore();
@@ -31,13 +30,9 @@ function ProductDetailsContent({ id }: { id: string }) {
     };
 
     fetchProduct();
-  }, [id, router]);
+  }, [id, getProductById, router]);
 
   const handleAddToCart = () => {
-    if (!selectedSize) {  // Check if size is null or empty
-      toast.error("Please select a size");
-      return;
-    }
     if (product) {
       addToCart({
         productId: product.id,
@@ -49,13 +44,11 @@ function ProductDetailsContent({ id }: { id: string }) {
         quantity: quantity,
       });
 
-      
-
       setSelectedSize("");
       setSelectedColor(0);
       setQuantity(1);
 
-      toast.success("Product is added to cart")
+      toast.success('Product is added to cart');
     }
   };
 
@@ -142,7 +135,6 @@ function ProductDetailsContent({ id }: { id: string }) {
                 <Button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   variant="outline"
-                  className="cursor-pointer"
                 >
                   -
                 </Button>
@@ -150,7 +142,6 @@ function ProductDetailsContent({ id }: { id: string }) {
                 <Button
                   onClick={() => setQuantity(quantity + 1)}
                   variant="outline"
-                  className="cursor-pointer"
                 >
                   +
                 </Button>
@@ -158,7 +149,7 @@ function ProductDetailsContent({ id }: { id: string }) {
             </div>
             <div>
               <Button
-                className={"w-full bg-black text-white hover:bg-gray-800 cursor-pointer"}
+                className={"w-full bg-black text-white hover:bg-gray-800"}
                 onClick={handleAddToCart}
               >
                 ADD TO CART
