@@ -1,8 +1,11 @@
-import { Suspense } from "react";
-import ProductDetailsSkeleton from "./productSkeleton";
+
 import ProductDetailsContent from "./productDetails";
 
-export default  function ProductDetailsPage({ params }: { params: { id: string } }) {
+type ProductDetailsPageProps = {
+  params: { id: string };
+};
+
+export default  function ProductDetailsPage({ params }: ProductDetailsPageProps) {
   
   return (
       <ProductDetailsContent id={params.id} />
