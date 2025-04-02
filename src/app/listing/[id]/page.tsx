@@ -1,11 +1,7 @@
 
 import ProductDetailsContent from "./productDetails";
 
-type ProductDetailsPageProps = {
-  params: { id: string };
-};
-
-export default  function ProductDetailsPage({ params }: ProductDetailsPageProps) {
+export default  function ProductDetailsPage({ params }: { params: { id: string } }) {
   
   return (
       <ProductDetailsContent id={params.id} />
