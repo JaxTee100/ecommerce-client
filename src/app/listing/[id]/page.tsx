@@ -3,7 +3,7 @@ import ProductDetailsSkeleton from "./productSkeleton";
 import ProductDetailsContent from "./productDetails";
 
 
-type Params = Promise<{ id: string}>;
+type Params = Promise<any>;
 
 async function  ProductDetailsPage({ params }: { params: Params }) {
   const { id } = await params;
