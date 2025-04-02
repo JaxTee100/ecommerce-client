@@ -1,4 +1,4 @@
-export const API_BASE_URL = process.env.PORT;
+export const API_BASE_URL = process.env.API_PORT;
 export const API_ROUTES = {
     AUTH: `${API_BASE_URL}/api/auth`,
     PRODUCTS: `${API_BASE_URL}/api/products`,
