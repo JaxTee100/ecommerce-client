@@ -271,12 +271,12 @@ function ProductListingPage() {
             ) : error ? (
               <div>Error: {error}</div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 border-3 border-red-600">
                 {products.map((productItem) => (
                   <div
                     onClick={() => router.push(`/listing/${productItem.id}`)}
                     key={productItem.id}
-                    className="group"
+                    className="group "
                   >
                     <div className="relative aspect-[3/4] mb-4 bg-gray-100 overflow-hidden">
                       <img

@@ -26,19 +26,19 @@ interface FormState {
   description: string;
   category: string;
   gender: string;
-  price: string;
-  stock: string;
+  price: number;
+  stock: number;
 }
 
 function SuperAdminManageProductPage() {
-  const [formState, setFormState] = useState({
+  const [formState, setFormState] = useState<FormState>({
     name: "",
     brand: "",
     description: "",
     category: "",
     gender: "",
-    price: "",
-    stock: "",
+    price: 0,
+    stock: 0,
   });
 
   const [selectedSizes, setSelectSizes] = useState<string[]>([]);
@@ -55,6 +55,7 @@ function SuperAdminManageProductPage() {
   useEffect(() => {
     if (isEditMode) {
       getProductById(getCurrentEditedProductId).then((product) => {
+        
         if (product) {
           setFormState({
             name: product.name,
@@ -62,13 +63,14 @@ function SuperAdminManageProductPage() {
             description: product.description,
             category: product.category,
             gender: product.gender,
-            price: product.price.toString(),
-            stock: product.stock.toString(),
+            price: product.price,
+            stock: product.stock,
           });
           setSelectSizes(product.sizes);
           setSelectColors(product.colors);
         }
       });
+      console.log("edit mode", getProductById(getCurrentEditedProductId));
     }
   }, [isEditMode, getCurrentEditedProductId, getProductById]);
 
@@ -82,8 +84,8 @@ function SuperAdminManageProductPage() {
         description: "",
         category: "",
         gender: "",
-        price: "",
-        stock: "",
+        price: 0,
+        stock: 0,
       });
       setSelectColors([]);
       setSelectSizes([]);
@@ -174,11 +176,11 @@ function SuperAdminManageProductPage() {
         >
           {isEditMode ? null : (
             <div className="mt-2 w-full flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-400 p-12">
-              <div className="text-center cursor-pointer">
+              <div className="text-center  border p-4 rounded-lg hover:bg-gray-100 shadow-lg">
                 <Upload className="mx-auto h-12 w-12 text-gray-400" />
                 <div className="mt-4 flex text-sm leadin-6 text-gray-600">
                   <Label>
-                    <span className="border border-red-500">Click to browse</span>
+                    <span className="cursor-pointer">Click to browse</span>
                     <input
                       type="file"
                       className="sr-only border border-green-500"

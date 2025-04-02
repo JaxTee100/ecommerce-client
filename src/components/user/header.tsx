@@ -90,7 +90,8 @@ function Header() {
           <div className="space-y-6 py-6">
             <div className="space-y-3">
               {navItems.map((navItem) => (
-                <p
+                <Link href={navItem.to}>
+                  <p
                   className="block w-full font-semibold p-2 cursor-pointer"
                   onClick={() => {
                     setShowSheetDialog(false);
@@ -100,6 +101,7 @@ function Header() {
                 >
                   {navItem.title}
                 </p>
+                </Link>
               ))}
             </div>
             <div className="space-y-4">

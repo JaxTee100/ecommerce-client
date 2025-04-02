@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { useSettingsStore } from "@/store/useSettingsStore";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const gridItems = [
@@ -36,6 +38,7 @@ function HomePage() {
   const { banners, featuredProducts, fetchFeaturedProducts, fetchBanners } =
     useSettingsStore();
 
+  
   useEffect(() => {
     fetchBanners();
     fetchFeaturedProducts();
@@ -62,10 +65,12 @@ function HomePage() {
             key={bannerItem.id}
           >
             <div className="absolute inset-0">
-              <img
+              <Image
                 src={bannerItem.imageUrl}
                 alt={`Banner ${index + 1}`}
                 className="w-full h-full object-cover"
+                width={100}
+                height={100}
               />
               <div className="absolute inset-0 bg-black" />
             </div>
@@ -84,9 +89,14 @@ function HomePage() {
                   <br />
                   High Performance E-Commerce Theme
                 </p>
-                <Button className="bg-white text-black hover:bg-gray-100 px-8 py-6 text-lg">
-                  SHOP NOW
-                </Button>
+                <Link href="/listing">
+                  <Button 
+                    className="bg-white text-black hover:bg-gray-100 px-8 py-6 text-lg mt-6"
+                  >
+                    SHOP NOW
+                  </Button>
+                </Link>
+                
               </div>
             </div>
           </div>
@@ -119,7 +129,9 @@ function HomePage() {
             {gridItems.map((gridItem, index) => (
               <div key={index} className="relative group overflow-hidden">
                 <div className="aspect-[3/4]">
-                  <img
+                  <Image
+                    width={100}
+                    height={100}
                     src={gridItem.image}
                     alt={gridItem.title}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"

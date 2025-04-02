@@ -62,7 +62,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
         }
       );
 
-      set({ products: response.data, isLoading: false });
+    set({ products: response.data, isLoading: false });
     } catch (e) {
       set({ error: "Failed to fetch product", isLoading: false });
     }
@@ -80,11 +80,11 @@ export const useProductStore = create<ProductState>((set, get) => ({
           },
         }
       );
-      console.log(response.data)
+      console.log("products", response.data)
       set({ isLoading: false });
       return response.data;
     } catch (e) {
-      set({ error: "Failed to create product", isLoading: false });
+      set({ error: `Failed to create product ${e}`, isLoading: false });
     }
   },
   updateProduct: async (id: string, productData: FormData) => {

@@ -24,6 +24,7 @@ function SuperAdminProductListingPage() {
 
   useEffect(() => {
     if (!productFetchRef.current) {
+      console.log("fetching products", products)
       fetchAllProductsForAdmin();
       productFetchRef.current = true;
     }
@@ -42,7 +43,7 @@ function SuperAdminProductListingPage() {
   if (isLoading) return null;
 
   return (
-    <div className="p-6">
+    <div className="p-6 font-mono">
       <div className="flex flex-col gap-6">
         <header className="flex items-center justify-between">
           <h1>All Products</h1>
@@ -52,8 +53,8 @@ function SuperAdminProductListingPage() {
         </header>
         <div className="rounded-lg border bg-card">
           <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
+            <Table className='table-auto'>
+              <TableHeader className="">
                 <TableRow>
                   <TableHead>Product Name</TableHead>
                   <TableHead>Price</TableHead>
@@ -88,7 +89,7 @@ function SuperAdminProductListingPage() {
                     </TableCell>
                     <TableCell>${product.price.toFixed(2)}</TableCell>
                     <TableCell>
-                      <p>{product.stock} Item left</p>
+                      <p>{product.stock} Items left</p>
                     </TableCell>
                     <TableCell>
                       <p className="font-medium">
