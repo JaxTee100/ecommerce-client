@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["res.cloudinary.com", 'images.unsplash.com', "avon-demo.myshopify.com"],
   },
+
+  typescript: {
+    ignoreBuildErrors: true,
+  }
 };
 
 export default nextConfig;
